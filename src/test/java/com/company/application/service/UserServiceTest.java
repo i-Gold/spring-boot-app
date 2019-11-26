@@ -1,7 +1,6 @@
 package com.company.application.service;
 
 import com.company.application.controller.request.UserUpdateRequest;
-import com.company.application.event.OnRegistrationCompleteEvent;
 import com.company.application.model.Authority;
 import com.company.application.model.Role;
 import com.company.application.model.User;
@@ -21,8 +20,6 @@ import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
-
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {

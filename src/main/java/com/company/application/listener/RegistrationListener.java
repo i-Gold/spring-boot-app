@@ -45,7 +45,7 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
         mailSender.send(email);
     }
 
-    private VerificationToken createVerificationToken(User user) {
+    VerificationToken createVerificationToken(User user) {
         VerificationToken verificationToken = new VerificationToken();
         verificationToken.setUser(user);
         verificationToken.setToken(UUID.randomUUID().toString());
