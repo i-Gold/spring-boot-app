@@ -8,13 +8,13 @@ import com.company.application.model.enumeration.RoleName;
 import com.company.application.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Collections;
 import java.util.Optional;
 
-import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -22,18 +22,19 @@ public class AdminServiceTest {
 
     @Mock
     private UserRepository userRepository;
+    @InjectMocks
+    private AdminService adminService;
 
     @Test
-    public void deleteUser() {
+    public void deleteUserTest() {
         User user = createUser();
         when(userRepository.save(user)).thenReturn(user);
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
-        doNothing().when(userRepository).deleteById(1L);
 
         userRepository.save(user);
 
         User saved = userRepository.findById(user.getId()).get();
-        userRepository.deleteById(saved.getId());
+        adminService.deleteUser(saved.getId());
         verify(userRepository, times(1)).deleteById(1L);
     }
 
